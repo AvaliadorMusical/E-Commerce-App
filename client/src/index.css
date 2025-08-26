@@ -84,7 +84,7 @@ h3 {
   height: 38px;
 
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: var(--green);
   color: hsl(0, 0%, 10%);
   cursor: pointer;
@@ -274,7 +274,7 @@ h3 {
   width: 30%;
   height: 5%;
   background-color: var(--grey-card);
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
 .page-btn {
