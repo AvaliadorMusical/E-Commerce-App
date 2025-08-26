@@ -1,0 +1,275 @@
+/* =========================================================
+   Variáveis
+   ========================================================= */
+:root {
+  /* Cores */
+  --background-color: hsl(0, 0%, 10%);
+  --green: hsl(118, 41%, 59%);
+  --grey-15: hsl(0, 0%, 15%);
+  --grey-card: hsl(0, 0%, 20%);
+  --grey-25: hsl(0, 0%, 25%);
+  --product-txt-color: hsl(0, 0%, 70%);
+  --text-color: rgba(255, 255, 255, 0.87);
+
+  /* Tipografia */
+  --font-family-base: Avenir, Helvetica, Arial, sans-serif;
+  --line-height-base: 1.5;
+  --font-weight-base: 400;
+}
+
+/* =========================================================
+   Reset básico
+   ========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   Base / Body & elementos
+   ========================================================= */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-base);
+  font-weight: var(--font-weight-base);
+  color: var(--text-color);
+
+  background-color: var(--background-color);
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  font-size: 10px;
+  color: var(--product-txt-color);
+}
+
+h3 {
+  font-size: 12px;
+  color: var(--product-txt-color);
+}
+
+/* =========================================================
+   Layout principal
+   ========================================================= */
+.container-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 1000px;
+  height: 500px;
+  margin: 20px 40px;
+}
+
+/* ---------------- Header ---------------- */
+.container-header {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.header-buttons {
+  width: 60px;
+  height: 38px;
+
+  border: none;
+  border-radius: 20px;
+  background-color: var(--green);
+  color: hsl(0, 0%, 10%);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.header-buttons:hover {
+  background-color: hsl(118, 41%, 70%);
+}
+
+/* =========================================================
+   Search group
+   ========================================================= */
+.search-group {
+  display: flex;
+  justify-content: space-between;
+
+  width: 300px;
+  border: 1px solid var(--green);
+  border-radius: 20px;
+  background-color: var(--grey-15);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estados do container */
+.search-group:hover,
+.search-group:focus-within {
+  box-shadow: 0 0 6px hsla(118, 50%, 50%, 0.5);
+  border-radius: 20px;
+}
+
+.search-group:hover .icon-btn,
+.search-group:focus-within .icon-btn {
+  border-top-color: hsl(118, 41%, 50%);
+  border-bottom-color: hsl(118, 41%, 50%);
+}
+
+/* Form & input */
+.search-group form {
+  flex: 1 1 auto;  /* ocupa o restante do espaço */
+  margin: 0;       /* remove margem padrão do form */
+}
+
+.search-box {
+  width: 100%;
+  padding: 10px 15px;
+
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--product-txt-color);
+}
+
+/* Botões */
+.button-settings {
+  display: flex;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Hover dos botões */
+.icon-btn:hover {
+  background: hsl(118, 41%, 20%);
+}
+
+/* Último botão arredondado */
+.icon-btn:last-child {
+  border-radius: 0 20px 20px 0;
+}
+
+/* Ícones */
+.icon-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.search-img {
+  opacity: 70%;
+}
+
+/* =========================================================
+   Lista de produtos / Cards
+   ========================================================= */
+.container-products {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 70%;
+  height: 80%;
+  padding: 10px 30px;
+
+  background-color: var(--grey-15);
+  border: 1px solid var(--green);
+  border-radius: 20px;
+}
+
+.card-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.card-item {
+  display: flex;
+  width: 100%;
+  height: 30%;
+  padding: 15px;
+
+  background-color: var(--grey-card);
+  border-radius: 20px;
+}
+
+.image {
+  width: 15%;
+  height: 100%;
+  margin-right: 15px;
+
+  background-color: var(--grey-25);
+  border-radius: 10px;
+}
+
+.each-product {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px;
+
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+
+.description {
+  width: 100%;
+  margin-right: 10px;
+}
+
+.config {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
+  width: auto;
+  height: 100%;
+}
+
+.config button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    padding: 4px;
+    width: auto;
+    height: auto;
+}
+
+.config button img {
+  width: 18px;
+  height: 18px;
+}
+
+.product-pages {
+  width: 20%;
+  height: 5%;
+  background-color: var(--grey-card);
+  border-radius: 20px;
+}
