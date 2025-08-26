@@ -268,8 +268,30 @@ h3 {
 }
 
 .product-pages {
-  width: 20%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 30%;
   height: 5%;
   background-color: var(--grey-card);
   border-radius: 20px;
+}
+
+.page-btn {
+  background: transparent;
+  border: none;
+  color: var(--product-txt-color);
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.page-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.page-btn.active {
+  text-decoration: underline;   
+  color: var(--green);
 }
