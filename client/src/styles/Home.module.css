@@ -40,9 +40,9 @@
 .searchGroup {
   display: flex;
   justify-content: space-between;
-  width: 300px;
+  width: 400px;
   border: 1px solid var(--green);
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: var(--grey-15);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -50,7 +50,6 @@
 .searchGroup:hover,
 .searchGroup:focus-within {
   box-shadow: 0 0 6px hsla(118, 50%, 50%, 0.5);
-  border-radius: 20px;
 }
 
 .searchGroup:hover .iconBtn,
@@ -92,7 +91,7 @@
 }
 
 .iconBtn:last-child {
-  border-radius: 0 20px 20px 0;
+  border-radius: 0 10px 10px 0;
 }
 
 .iconBtn img {
@@ -151,7 +150,7 @@
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  padding: 5px 10px;
+  padding-left: 0px 20px ;
   overflow: hidden;
   overflow-wrap: break-word;
 }

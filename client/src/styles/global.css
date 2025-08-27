@@ -42,11 +42,11 @@ body {
 }
 
 p {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--product-txt-color);
 }
 
 h3 {
-  font-size: 12px;
+  font-size: 15px;
   color: var(--product-txt-color);
 }

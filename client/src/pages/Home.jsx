@@ -8,7 +8,6 @@ import ProductCard from '../components/ProductCard';
 import Pagination from '../components/Pagination';
 import SearchBar from '../components/SearchBar';
 import styles from '../styles/Home.module.css';
-import "../styles/global.css"
 
 function Home() {
   const navigate = useNavigate();
