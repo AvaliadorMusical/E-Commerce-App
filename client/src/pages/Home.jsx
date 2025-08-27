@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-import searchIcon from '../assets/search.png';
-import quickSearchIcon from '../assets/quicksearch.png';
+import searchIcon from "../assets/search.png";
+import quickSearchIcon from "../assets/quicksearch.png";
 
-import ProductCard from '../components/ProductCard';
-import Pagination from '../components/Pagination';
-import SearchBar from '../components/SearchBar';
-import styles from '../styles/Home.module.css';
+import ProductCard from "../components/ProductCard";
+import Pagination from "../components/Pagination";
+import SearchBar from "../components/SearchBar";
+import styles from "../styles/Home.module.css";
 
 function Home() {
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ function Home() {
   };
 
   const [products, setProducts] = useState([]);
+  const [order, setOrder] = useState("asc");
 
   const fetchProducts = async () => {
     const response = await fetch("http://127.0.0.1:5000/products");
@@ -35,6 +36,14 @@ function Home() {
   const start = (page - 1) * perPage;
   const paginated = products.slice(start, start + perPage);
 
+  const sortByPrice = () => {
+    const sorted = [...products].sort((a, b) =>
+      order === "asc" ? a.price - b.price : b.price - a.price
+    );
+    setProducts(sorted);
+    setOrder(order === "asc" ? "desc" : "asc");
+  };
+
   return (
     <div className={styles.containerMain}>
       <div className={styles.containerHeader}>
@@ -44,8 +53,8 @@ function Home() {
 
         <SearchBar searchIcon={searchIcon} quickSearchIcon={quickSearchIcon} />
 
-        <button className={styles.headerButtons}>
-          Sort
+        <button className={styles.headerButtons} onClick={sortByPrice}>
+          Sort by Price ({order === "asc" ? "↑" : "↓"})
         </button>
       </div>
 
