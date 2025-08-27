@@ -36,10 +36,27 @@ function Home() {
   const start = (page - 1) * perPage;
   const paginated = products.slice(start, start + perPage);
 
+  const bubbleSortByPrice = (arr, order) => {
+    const sorted = [...arr];
+    const n = sorted.length;
+    for (let i = 0; i < n - 1; i++) {
+      for (let j = 0; j < n - i - 1; j++) {
+        const shouldSwap =
+          order === "asc"
+            ? sorted[j].price > sorted[j + 1].price
+            : sorted[j].price < sorted[j + 1].price;
+        if (shouldSwap) {
+          const temp = sorted[j];
+          sorted[j] = sorted[j + 1];
+          sorted[j + 1] = temp;
+        }
+      }
+    }
+    return sorted;
+  };
+
   const sortByPrice = () => {
-    const sorted = [...products].sort((a, b) =>
-      order === "asc" ? a.price - b.price : b.price - a.price
-    );
+    const sorted = bubbleSortByPrice(products, order);
     setProducts(sorted);
     setOrder(order === "asc" ? "desc" : "asc");
   };
