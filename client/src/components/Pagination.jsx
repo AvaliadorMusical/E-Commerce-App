@@ -1,3 +1,5 @@
+import styles from '../styles/Home.module.css';
+
 function Pagination({ totalItems, perPage, currentPage, setPage}) {
   const totalPages = Math.ceil(totalItems / perPage);
   const maxVisible = 5;
@@ -15,17 +17,22 @@ function Pagination({ totalItems, perPage, currentPage, setPage}) {
   }
 
   return (
-    <div className="product-pages">
+    <div className={styles.productPages}>
       {pages.map((num) => (
         <button
           key={num}
-          className={currentPage === num ? 'page-btn active' : 'page-btn'}
+          className={
+            currentPage === num 
+              ? `${styles.pageBtn} ${styles.active}` 
+              : styles.pageBtn
+          }
           onClick={() => setPage(num)}
         >
           {num}
         </button>
       ))}
     </div>
+
   );
 }
 
