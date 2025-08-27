@@ -10,7 +10,7 @@ def products():
       "id": 1, 
       "title": "Esfirra de Mirtilo", 
       "price": 8.99, 
-      "description": "Uma deliciosa esfirra com mirtilos frescos e levemente caramelizados, envolta em uma massa macia." 
+      "description": "Esfirra de mirtilo com massa macia e dourada, recheio de frutas frescas caramelizadas, oferecendo um sabor doce e equilibrado em cada mordida." 
     },
     { 
       "id": 2, 

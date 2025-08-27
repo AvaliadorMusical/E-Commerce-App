@@ -1,12 +1,158 @@
-.container-main {
+.containerMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 1000px;
+  height: 600px;
+  margin: 20px 40px;
+}
+
+.containerProducts {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
-  width: 1000px;
-  height: 500px;
-  margin: 20px 40px;
+  width: 55%;
+  height: 70%;
+  padding: 10px 30px;
+  background-color: var(--grey-15);
+  border: 1px solid var(--green);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 0 15px rgba(0,255,0,0.15);
 }
 
+.upCard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 40%;
+  margin-bottom: 10px;
+}
 
+.imgCard {
+  background-color: var(--grey-card);
+  width: 25%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.infoCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--grey-card);
+  width: 50%;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.descCard {
+  background-color: var(--grey-25);
+  width: 100%;
+  height: 20%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.descCard:hover {
+  background-color: hsl(0, 0%, 24%);
+}
+
+.descCard input {
+   width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 0.8rem;
+  outline: none;
+  box-sizing: border-box;
+  color: var(--product-txt-color);
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.descCard input:focus {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255,255,255,0.05);
+}
+
+.descCard input::placeholder {
+  transition: opacity 0.3s ease;
+}
+
+.descCard input:focus::placeholder {
+  opacity: 0;
+}
+
+.downCard {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 65%;
+}
+
+.description {
+  width: 100%;
+  height: 70%;
+  background-color: var(--grey-card);
+  border-radius: 10px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.description textarea {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: text;
+  color: var(--product-txt-color);
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  resize: none;
+  outline: none; 
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.description textarea:focus {
+  background-color: hsl(0, 0%, 21%);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.downBtn {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainBtn {
+  width: 18%;
+  background-color: var(--green);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.mainBtn:hover{
+  background-color: hsl(118, 41%, 70%);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
