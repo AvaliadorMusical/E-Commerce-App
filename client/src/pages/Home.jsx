@@ -18,17 +18,18 @@ function Home() {
 
   const [products, setProducts] = useState([]);
   const [order, setOrder] = useState("asc");
+  const [search, setSearch] = useState("");
 
-  const fetchProducts = async () => {
-    const response = await fetch("http://127.0.0.1:5000/products");
+  const fetchProducts = async (params = {}) => {
+    const query = new URLSearchParams(params).toString();
+    const response = await fetch(`http://127.0.0.1:5000/products?${query}`);
     const data = await response.json();
-    console.log(data);
     setProducts(data);
   };
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchProducts({ order, search });
+  }, [order, search]);
 
   const [page, setPage] = useState(1);
   const perPage = 3;
@@ -36,29 +37,13 @@ function Home() {
   const start = (page - 1) * perPage;
   const paginated = products.slice(start, start + perPage);
 
-  const bubbleSortByPrice = (arr, order) => {
-    const sorted = [...arr];
-    const n = sorted.length;
-    for (let i = 0; i < n - 1; i++) {
-      for (let j = 0; j < n - i - 1; j++) {
-        const shouldSwap =
-          order === "asc"
-            ? sorted[j].price > sorted[j + 1].price
-            : sorted[j].price < sorted[j + 1].price;
-        if (shouldSwap) {
-          const temp = sorted[j];
-          sorted[j] = sorted[j + 1];
-          sorted[j + 1] = temp;
-        }
-      }
-    }
-    return sorted;
+  const sortByPrice = () => {
+    setOrder(order === "asc" ? "desc" : "asc");
   };
 
-  const sortByPrice = () => {
-    const sorted = bubbleSortByPrice(products, order);
-    setProducts(sorted);
-    setOrder(order === "asc" ? "desc" : "asc");
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    setPage(1);
   };
 
   return (
@@ -68,7 +53,12 @@ function Home() {
           Add
         </button>
 
-        <SearchBar searchIcon={searchIcon} quickSearchIcon={quickSearchIcon} />
+        <SearchBar
+          searchIcon={searchIcon}
+          quickSearchIcon={quickSearchIcon}
+          value={search}
+          onChange={handleSearch}
+        />
 
         <button className={styles.headerButtons} onClick={sortByPrice}>
           Sort by Price ({order === "asc" ? "↑" : "↓"})

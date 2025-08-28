@@ -310,7 +310,28 @@ def products():
 
 @app.route("/products", methods=["GET"])
 def get_products():
-  return jsonify(products())
+  order = request.args.get("order")
+  search = request.args.get("search", "").lower()
+  items = products()
+
+  if search:
+    items = [
+      p for p in items
+      if search in p["title"].lower() or search in p["description"].lower()
+    ]
+
+  if order in ("asc", "desc"):
+    n = len(items)
+    for i in range(n - 1):
+      for j in range(n - i - 1):
+        should_swap = (
+          items[j]["price"] > items[j + 1]["price"]
+          if order == "asc"
+          else items[j]["price"] < items[j + 1]["price"]
+        )
+      if should_swap:
+        items[j], items[j + 1] = items[j + 1], items[j]
+  return jsonify(items)
 
 @app.route("/products", methods=["POST"])
 def add_product():

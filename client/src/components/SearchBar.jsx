@@ -1,26 +1,31 @@
-import styles from '../styles/Home.module.css';
+import styles from "../styles/Home.module.css";
 
-function SearchBar({ searchIcon, quickSearchIcon }) {
+function SearchBar({ searchIcon, quickSearchIcon, value, onChange }) {
   return (
     <div className={styles.searchGroup}>
       <form>
-        <input 
+        <input
           className={styles.searchBox}
-          type="text" 
+          type="text"
           placeholder="Search product"
+          value={value}
+          onChange={onChange}
         />
       </form>
       <div className={styles.buttonSettings}>
         <button className={styles.iconBtn}>
-          <img className={styles.searchImg} src={searchIcon} alt="Linear Search" />
+          <img
+            className={styles.searchImg}
+            src={searchIcon}
+            alt="Linear Search"
+          />
         </button>
         <button className={styles.iconBtn}>
           <img src={quickSearchIcon} alt="Binary Search" />
         </button>
-      </div>  
+      </div>
     </div>
-
-  ) 
+  );
 }
 
-export default SearchBar
+export default SearchBar;
