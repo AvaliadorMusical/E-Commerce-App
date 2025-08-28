@@ -28,8 +28,8 @@ function Home() {
   };
 
   useEffect(() => {
-    fetchProducts({ order, search });
-  }, [order, search]);
+    fetchProducts({ order });
+  }, [order]);
 
   const [page, setPage] = useState(1);
   const perPage = 3;
@@ -46,6 +46,16 @@ function Home() {
     setPage(1);
   };
 
+  const handleLinearSearch = () => {
+    fetchProducts({ order, search, search_type: "linear" });
+    setPage(1);
+  };
+
+  const handleBinarySearch = () => {
+    fetchProducts({ order, search, search_type: "binary" });
+    setPage(1);
+  };
+
   return (
     <div className={styles.containerMain}>
       <div className={styles.containerHeader}>
@@ -58,6 +68,8 @@ function Home() {
           quickSearchIcon={quickSearchIcon}
           value={search}
           onChange={handleSearch}
+          onLinearSearch={handleLinearSearch}
+          onBinarySearch={handleBinarySearch}
         />
 
         <button className={styles.headerButtons} onClick={sortByPrice}>

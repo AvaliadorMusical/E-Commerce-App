@@ -312,14 +312,10 @@ def products():
 def get_products():
   order = request.args.get("order")
   search = request.args.get("search", "").lower()
+  search_type = request.args.get("search_type", "linear")
   items = products()
 
-  if search:
-    items = [
-      p for p in items
-      if search in p["title"].lower() or search in p["description"].lower()
-    ]
-
+  #Bubble Sort
   if order in ("asc", "desc"):
     n = len(items)
     for i in range(n - 1):
@@ -331,6 +327,42 @@ def get_products():
         )
         if should_swap:
           items[j], items[j + 1] = items[j + 1], items[j]
+
+  #Linear Search
+  if search and search_type == "linear":
+    filtered = []
+    for item in items:
+      if search in item["title"].lower() or search in item["description"].lower():
+        filtered.append(item)
+    items = filtered
+
+  #Binary Search
+  if search and search_type == "binary":
+    found = []
+
+    # Search in title
+    items_by_title = sorted(items, key=lambda x: x["title"].lower())
+    left, right = 0, len(items_by_title) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        title = items_by_title[mid]["title"].lower()
+        if search == title:
+            found.append(items_by_title[mid])
+            # Check neighbors for duplicates in title
+            l, r = mid - 1, mid + 1
+            while l >= 0 and items_by_title[l]["title"].lower() == search:
+                found.append(items_by_title[l])
+                l -= 1
+            while r < len(items_by_title) and items_by_title[r]["title"].lower() == search:
+                found.append(items_by_title[r])
+                r += 1
+            break
+        elif search < title:
+            right = mid - 1
+        else:
+            left = mid + 1
+    items = found
+
   return jsonify(items)
 
 @app.route("/products", methods=["POST"])
