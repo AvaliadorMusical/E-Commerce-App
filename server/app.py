@@ -329,8 +329,8 @@ def get_products():
           if order == "asc"
           else items[j]["price"] < items[j + 1]["price"]
         )
-      if should_swap:
-        items[j], items[j + 1] = items[j + 1], items[j]
+        if should_swap:
+          items[j], items[j + 1] = items[j + 1], items[j]
   return jsonify(items)
 
 @app.route("/products", methods=["POST"])
