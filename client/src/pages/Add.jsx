@@ -1,12 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/Add.module.css';
+import InputField from '../components/addComponents/InputField';
+import DownBtn from '../components/addComponents/DownBtn';
+import TextArea from '../components/addComponents/TextArea';
+import { useState } from 'react';
 
 function Add() {
   const navigate = useNavigate()
 
+  const {name, setName} = useState("")
+  const {price, setPrice} = useState("")
+  const {rate, setRate} = useState("")
+  const {description, setDescription} = useState("")
+
   function goToHomePage(){
     navigate("/")
   }
+
+  fun
 
   return (
     <div className={styles.containerMain}>
@@ -16,24 +27,16 @@ function Add() {
 
           </div>
           <div className={styles.infoCard}>
-            <div className={styles.descCard}>
-              <input type="text" placeholder="Name" />
-            </div>
-            <div className={styles.descCard}>
-              <input type="text" placeholder="Price" />
-            </div>
-            <div className={styles.descCard}>
-              <input type="text" placeholder="Rate" />
-            </div>
+            <InputField placeholder="Name" onChange={e}/>
+            <InputField placeholder="Price" onChange={e}/>
+            <InputField placeholder="Rate" onChange={e}/>
           </div>
         </div>
         <div className={styles.downCard}>
-          <div className={styles.description}>
-              <textarea placeholder="Write the product description..." maxLength={150}/>
-          </div>
+          <TextArea placeholder="Write the product description..."/>
           <div className={styles.downBtn}>
-            <button className={styles.mainBtn} onClick={goToHomePage}>Back</button>
-            <button className={styles.mainBtn}>Create</button>
+            <DownBtn onClick={goToHomePage}>Back</DownBtn>
+            <DownBtn onClick={eventHandler}>Create</DownBtn>
           </div>
         </div>
       </div>

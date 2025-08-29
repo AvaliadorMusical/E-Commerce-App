@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css';
+import styles from '../../styles/Home.module.css';
 
 function Pagination({ totalItems, perPage, currentPage, setPage}) {
   const totalPages = Math.ceil(totalItems / perPage);

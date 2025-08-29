@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import searchIcon from "../assets/search.png";
 import quickSearchIcon from "../assets/quicksearch.png";
 
-import ProductCard from "../components/ProductCard";
-import Pagination from "../components/Pagination";
-import SearchBar from "../components/SearchBar";
+import ProductCard from "../components/homeComponents/ProductCard";
+import Pagination from "../components/homeComponents/Pagination";
+import SearchBar from "../components/homeComponents/SearchBar";
 import styles from "../styles/Home.module.css";
 
 function Home() {
