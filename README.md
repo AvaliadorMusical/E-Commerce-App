@@ -79,4 +79,4 @@ Projeto acadêmico. Faça fork e melhore! Dúvidas? Fale com o desenvolvedor.
 
 ---
 
-**Desenvolvido por [Seu Nome] e equipe.**
+**Desenvolvido por Ygor Gabriel, Henrique de Moraes e Felipe Sorrentino**
