@@ -5,7 +5,7 @@ from routes.algorithms_routes import algorithms_bp  # importa as rotas de algori
 
 # cria a aplicação Flask
 app = Flask(__name__)
-CORS(app)  # libera o acesso do frontend (React)
+CORS(app)
 
 # registra as rotas vindas de outros arquivos
 # tudo que for "/products" vem de products_routes

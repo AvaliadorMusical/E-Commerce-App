@@ -58,7 +58,7 @@ function Add() {
       // response.json(), ler a resposta como json
 
       // fazendo a requisicao http e salvando na const response
-      const response = await fetch("http://localhost:5000/products", {
+      const response = await fetch("http://localhost:5000/products/", {
         method: "POST", // definindo o metodo da requisicao
         headers: { "Content-Type": "application/json" }, // especificando o tipo do dado
         body: JSON.stringify(productData), // transformando em json
