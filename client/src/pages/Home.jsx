@@ -81,8 +81,8 @@ function Home() {
         <div className={styles.cardProduct}>
           {paginated.map((p) => (
             <ProductCard
-              key={p.id}
-              title={p.title}
+              id={p.id}
+              name={p.name}
               description={p.description}
               price={`R$ ${p.price.toFixed(2)}`}
             />
