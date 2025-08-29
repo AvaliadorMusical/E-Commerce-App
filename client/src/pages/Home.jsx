@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
 
 import searchIcon from "../assets/search.png";
 import quickSearchIcon from "../assets/quicksearch.png";
@@ -16,45 +17,43 @@ function Home() {
     navigate("/Add");
   };
 
-  const [products, setProducts] = useState([]);
-  const [order, setOrder] = useState("asc");
-  const [search, setSearch] = useState("");
+const handleSearch = async (type, key, value) => {
+  const start = performance.now();
+  const res = await fetch(`http://localhost:5000/products/search/${type}?key=${key}&value=${value}`);
+  const data = await res.json();
+  const end = performance.now();
+  console.log(`${type} search took ${(end - start).toFixed(3)} ms`);
+  setProducts(Array.isArray(data) ? data : []);
+};
 
-  const fetchProducts = async (params = {}) => {
-    const query = new URLSearchParams(params).toString();
-    const response = await fetch(`http://127.0.0.1:5000/products?${query}`);
-    const data = await response.json();
-    setProducts(data);
-  };
+const handleSort = async (key) => {
+  const start = performance.now();
+  const res = await fetch(`http://localhost:5000/products/sort/bubble?key=${key}`);
+  const data = await res.json();
+  const end = performance.now();
+  console.log(`Bubble sort took ${(end - start).toFixed(3)} ms`);
+  setProducts(Array.isArray(data) ? data : []);
+};
+
+
+const fetchProducts = async () => {
+  const response = await fetch("http://127.0.0.1:5000/products");
+  const data = await response.json();
+  console.log(data);
+  setProducts(Array.isArray(data) ? data : []);
+};
 
   useEffect(() => {
-    fetchProducts({ order });
-  }, [order]);
+    fetchProducts();
+  }, []);
 
+  const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const perPage = 3;
 
   const start = (page - 1) * perPage;
-  const paginated = products.slice(start, start + perPage);
+  const paginated = (products || []).slice(start, start + perPage);
 
-  const sortByPrice = () => {
-    setOrder(order === "asc" ? "desc" : "asc");
-  };
-
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-    setPage(1);
-  };
-
-  const handleLinearSearch = () => {
-    fetchProducts({ order, search, search_type: "linear" });
-    setPage(1);
-  };
-
-  const handleBinarySearch = () => {
-    fetchProducts({ order, search, search_type: "binary" });
-    setPage(1);
-  };
 
   return (
     <div className={styles.containerMain}>
@@ -66,14 +65,13 @@ function Home() {
         <SearchBar
           searchIcon={searchIcon}
           quickSearchIcon={quickSearchIcon}
-          value={search}
-          onChange={handleSearch}
-          onLinearSearch={handleLinearSearch}
-          onBinarySearch={handleBinarySearch}
+          onSearch={handleSearch}
         />
 
-        <button className={styles.headerButtons} onClick={sortByPrice}>
-          Sort by Price ({order === "asc" ? "↑" : "↓"})
+        <button className={styles.headerButtons}
+          onClick={() => handleSort("price")}
+        >
+          Sort
         </button>
       </div>
 
@@ -81,10 +79,11 @@ function Home() {
         <div className={styles.cardProduct}>
           {paginated.map((p) => (
             <ProductCard
-              id={p.id}
+              key={p._id}
+              id={p._id}
               name={p.name}
               description={p.description}
-              price={`R$ ${p.price.toFixed(2)}`}
+              price={p.price}
             />
           ))}
         </div>

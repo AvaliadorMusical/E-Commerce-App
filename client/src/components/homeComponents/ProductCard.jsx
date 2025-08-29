@@ -21,7 +21,12 @@ function ProductCard({ id, name, description, price }) {
         <div className={styles.description}>
           <h3>{name}</h3>
           <p>{description}</p>
-          <p>{price}</p>
+          <p>
+            {new Intl.NumberFormat("pt-BR", {
+              style: "currency",
+              currency: "BRL"
+            }).format(price)}
+          </p>
         </div>
         <div className={styles.config}>
           <button onClick={eventHandler}>

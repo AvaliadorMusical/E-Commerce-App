@@ -36,9 +36,10 @@ pip install -r requirements.txt
 # Configure MongoDB (edite app.py ou .env com MONGODB_URI=mongodb://localhost:27017/ecommerce)
 python app.py
 ```
+> **Importante**: Criar uma pasta .env na raiz do projeto e colocar a key do banco de dados disponibilizada pelo Ygor. Feito dessa forma para manter o sigilo do banco.
 > **Dica**: Se `requirements.txt` não existir, instale: `pip install flask flask-cors pymongo`. Backend roda em `http://localhost:5000`.
 
-### 3. Frontend (React + Vite)
+### 4. Frontend (React + Vite)
 ```bash
 cd client
 npm install
@@ -46,7 +47,7 @@ npm run dev
 ```
 > **Dica**: Acesse `http://localhost:5173`. Backend deve estar rodando.
 
-### 4. Usar a Aplicação
+### 5. Usar a Aplicação
 - No navegador, acesse o frontend.
 - Crie, busque (linear/binary), filtre (bubble sort) ou delete produtos.
 

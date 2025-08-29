@@ -1,33 +1,19 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 from flask_cors import CORS
-from pymongo import MongoClient
-from credenciais import url_mongo
-from bson import ObjectId
+from routes.products_routes import products_bp   # importa as rotas de produtos
+from routes.algorithms_routes import algorithms_bp  # importa as rotas de algoritmos
 
-cliente = MongoClient(url_mongo)
-db = cliente["e-commerce"]
-produtos = db["produtos"]
-
+# cria a aplicação Flask
 app = Flask(__name__)
-CORS(app)  
+CORS(app)  # libera o acesso do frontend (React)
 
-@app.route("/products", methods=["GET"])
-def get_products():
-  items = list(produtos.find())
-  for item in items:
-    item["_id"] = str(item["_id"])
-  return jsonify(items)
+# registra as rotas vindas de outros arquivos
+# tudo que for "/products" vem de products_routes
+app.register_blueprint(products_bp, url_prefix="/products")
 
-@app.route("/products", methods=["POST"])
-def add_products():
-  data = request.json
-  result = produtos.insert_one(data)
-  return jsonify({"_id": str(result.inserted_id)}), 201
-
-@app.route("/products/<id>", methods=["DELETE"])
-def delete_product(id):
-  produtos.delete_one({"_id": ObjectId(id)})
-  return jsonify({"message": "deleted"})
+# tudo que for "/products/search/..." ou "/products/sort/..." vem de algorithms_routes
+app.register_blueprint(algorithms_bp, url_prefix="/products")
 
 if __name__ == "__main__":
-  app.run(debug=True)
+    # inicia o servidor Flask em localhost:5000
+    app.run(debug=True)
