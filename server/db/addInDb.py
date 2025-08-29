@@ -1,15 +1,16 @@
 from pymongo import MongoClient
 from flask import Flask, jsonify, request
+from credenciais import url_mongo
 
 app = Flask(__name__)
 
-cliente = MongoClient("mongodb+srv://Henrique:Q52hUEvVCpYaJgUU@cluster0.zutd5pd.mongodb.net/")
+cliente = MongoClient(url_mongo)
 
 db = cliente["e-commerce"]
 
 produtos = db["produtos"]
 
-@app.route("/produtos", methods=["GET"])
+@app.route("/produtos/add")
 def addProduto():
     nome = request.json.get("name")
     preço = request.json.get("price")
