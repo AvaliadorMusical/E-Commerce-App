@@ -1,14 +1,10 @@
-from pymongo import MongoClient
+from db import produtos
 from flask import Flask, jsonify, request
-from credenciais import url_mongo
+
 
 app = Flask(__name__)
 
-cliente = MongoClient(url_mongo)
 
-db = cliente["e-commerce"]
-
-produtos = db["produtos"]
 
 @app.route("/produtos/add")
 def addProduto():
@@ -19,5 +15,3 @@ def addProduto():
     imagem = request.json.get("image")
     produtos.insert_one({ "name" : nome, "price" : preço, "rating" : nota, "description" : descricao, "image": imagem})
 
-if __name__ == "__main__":
-    app.run(debug=True)
